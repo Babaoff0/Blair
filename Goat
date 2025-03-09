@@ -1,0 +1,95 @@
+-- Création de l'interface utilisateur
+local player = game.Players.LocalPlayer
+local gui = Instance.new("ScreenGui")
+local frame = Instance.new("Frame")
+local title = Instance.new("TextLabel")
+local speedButton = Instance.new("TextButton")
+local lightingButton = Instance.new("TextButton")
+local toggleButton = Instance.new("TextButton")
+
+-- Ajouter le GUI au joueur
+gui.Parent = player:WaitForChild("PlayerGui")
+frame.Parent = gui
+frame.Size = UDim2.new(0, 200, 0, 150)
+frame.Position = UDim2.new(0.4, 0, 0.2, 0)
+frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+frame.Active = true
+frame.Draggable = true -- Permet de déplacer l'embed
+
+-- Titre
+title.Parent = frame
+title.Size = UDim2.new(1, 0, 0.2, 0)
+title.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+title.Text = "Options"
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.Font = Enum.Font.SourceSansBold
+title.TextSize = 18
+
+-- Bouton Speed
+speedButton.Parent = frame
+speedButton.Size = UDim2.new(1, -10, 0.2, 0)
+speedButton.Position = UDim2.new(0, 5, 0.3, 0)
+speedButton.Text = "Speed OFF"
+speedButton.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
+speedButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+-- Bouton Lighting
+lightingButton.Parent = frame
+lightingButton.Size = UDim2.new(1, -10, 0.2, 0)
+lightingButton.Position = UDim2.new(0, 5, 0.55, 0)
+lightingButton.Text = "Lighting OFF"
+lightingButton.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
+lightingButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+-- Bouton Toggle UI
+toggleButton.Parent = frame
+toggleButton.Size = UDim2.new(1, -10, 0.2, 0)
+toggleButton.Position = UDim2.new(0, 5, 0.8, 0)
+toggleButton.Text = "Cacher UI"
+toggleButton.BackgroundColor3 = Color3.fromRGB(150, 50, 50)
+toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+-- Variables d'état
+local speedEnabled = false
+local lightingEnabled = false
+local uiVisible = true
+
+-- Fonction Speed
+speedButton.MouseButton1Click:Connect(function()
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    if not speedEnabled then
+        humanoid.WalkSpeed = 25
+        speedButton.Text = "Speed ON"
+        speedButton.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
+    else
+        humanoid.WalkSpeed = 16
+        speedButton.Text = "Speed OFF"
+        speedButton.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
+    end
+    speedEnabled = not speedEnabled
+end)
+
+-- Fonction Lighting
+lightingButton.MouseButton1Click:Connect(function()
+    local lighting = game:GetService("Lighting")
+    if not lightingEnabled then
+        lighting.Brightness = 5
+        lighting.Ambient = Color3.fromRGB(255, 255, 255)
+        lightingButton.Text = "Lighting ON"
+        lightingButton.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
+    else
+        lighting.Brightness = 1
+        lighting.Ambient = Color3.fromRGB(127, 127, 127)
+        lightingButton.Text = "Lighting OFF"
+        lightingButton.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
+    end
+    lightingEnabled = not lightingEnabled
+end)
+
+-- Fonction Toggle UI
+toggleButton.MouseButton1Click:Connect(function()
+    uiVisible = not uiVisible
+    frame.Visible = uiVisible
+    toggleButton.Text = uiVisible and "Cacher UI" or "Afficher UI"
+end)
