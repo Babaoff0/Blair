@@ -6,6 +6,7 @@ gui.ResetOnSpawn = false
 
 -- S'assurer que l'UI reste toujours au premier plan
 gui.DisplayOrder = 999
+gui.IgnoreGuiInset = true -- Permet de ne pas être affecté par l'interface de Roblox
 
 local frame = Instance.new("Frame")
 frame.Parent = gui
@@ -14,7 +15,7 @@ frame.Position = UDim2.new(0.4, 0, 0.2, 0)
 frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 frame.Active = true
 frame.Draggable = true
-frame.ZIndex = 999 -- Toujours au-dessus des autres interfaces
+frame.ZIndex = 9999 -- Toujours au-dessus des autres interfaces
 
 -- Titre
 local title = Instance.new("TextLabel")
@@ -25,7 +26,7 @@ title.Text = "Options"
 title.TextColor3 = Color3.fromRGB(255, 255, 255)
 title.Font = Enum.Font.SourceSansBold
 title.TextSize = 18
-title.ZIndex = 999
+title.ZIndex = 9999
 
 -- Boutons
 local function createButton(parent, text, position)
@@ -36,7 +37,7 @@ local function createButton(parent, text, position)
     button.Text = text
     button.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
     button.TextColor3 = Color3.fromRGB(255, 255, 255)
-    button.ZIndex = 999
+    button.ZIndex = 9999
     return button
 end
 
@@ -54,7 +55,7 @@ openButton.BackgroundColor3 = Color3.fromRGB(50, 150, 50)
 openButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 openButton.Visible = false
 openButton.Active = true
-openButton.ZIndex = 999
+openButton.ZIndex = 9999
 
 -- Variables d'état
 local speedEnabled = false
