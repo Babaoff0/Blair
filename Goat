@@ -10,12 +10,15 @@ local openButton = Instance.new("TextButton") -- Bouton pour rouvrir l'UI
 
 -- Ajouter le GUI au joueur
 gui.Parent = player:WaitForChild("PlayerGui")
+gui.ResetOnSpawn = false -- Empêche la réinitialisation de l'UI à chaque respawn
+gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling -- Permet d'avoir l'UI toujours au premier plan
 frame.Parent = gui
 frame.Size = UDim2.new(0, 200, 0, 150)
 frame.Position = UDim2.new(0.4, 0, 0.2, 0)
 frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 frame.Active = true
 frame.Draggable = true -- Permet de déplacer l'embed
+frame.ZIndex = 10 -- S'assure que l'UI est toujours au premier plan
 
 -- Titre
 title.Parent = frame
@@ -25,6 +28,7 @@ title.Text = "Options"
 title.TextColor3 = Color3.fromRGB(255, 255, 255)
 title.Font = Enum.Font.SourceSansBold
 title.TextSize = 18
+title.ZIndex = 11
 
 -- Bouton Speed
 speedButton.Parent = frame
@@ -33,6 +37,7 @@ speedButton.Position = UDim2.new(0, 5, 0.3, 0)
 speedButton.Text = "Speed OFF"
 speedButton.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
 speedButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+speedButton.ZIndex = 11
 
 -- Bouton Lighting
 lightingButton.Parent = frame
@@ -41,6 +46,7 @@ lightingButton.Position = UDim2.new(0, 5, 0.55, 0)
 lightingButton.Text = "Lighting OFF"
 lightingButton.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
 lightingButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+lightingButton.ZIndex = 11
 
 -- Bouton Toggle UI
 toggleButton.Parent = frame
@@ -49,6 +55,7 @@ toggleButton.Position = UDim2.new(0, 5, 0.8, 0)
 toggleButton.Text = "Cacher UI"
 toggleButton.BackgroundColor3 = Color3.fromRGB(150, 50, 50)
 toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+toggleButton.ZIndex = 11
 
 -- Bouton pour rouvrir l'UI
 openButton.Parent = gui
@@ -60,6 +67,7 @@ openButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 openButton.Visible = false
 openButton.Active = true
 openButton.Draggable = false
+openButton.ZIndex = 11
 
 -- Variables d'état
 local speedEnabled = false
