@@ -6,6 +6,7 @@ local title = Instance.new("TextLabel")
 local speedButton = Instance.new("TextButton")
 local lightingButton = Instance.new("TextButton")
 local toggleButton = Instance.new("TextButton")
+local openButton = Instance.new("TextButton") -- Bouton pour rouvrir l'UI
 
 -- Ajouter le GUI au joueur
 gui.Parent = player:WaitForChild("PlayerGui")
@@ -49,6 +50,15 @@ toggleButton.Text = "Cacher UI"
 toggleButton.BackgroundColor3 = Color3.fromRGB(150, 50, 50)
 toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 
+-- Bouton pour rouvrir l'UI
+openButton.Parent = gui
+openButton.Size = UDim2.new(0, 100, 0, 50)
+openButton.Position = UDim2.new(0.05, 0, 0.05, 0)
+openButton.Text = "Ouvrir UI"
+openButton.BackgroundColor3 = Color3.fromRGB(50, 150, 50)
+openButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+openButton.Visible = false
+
 -- Variables d'état
 local speedEnabled = false
 local lightingEnabled = false
@@ -91,5 +101,13 @@ end)
 toggleButton.MouseButton1Click:Connect(function()
     uiVisible = not uiVisible
     frame.Visible = uiVisible
+    openButton.Visible = not uiVisible
     toggleButton.Text = uiVisible and "Cacher UI" or "Afficher UI"
+end)
+
+-- Fonction pour rouvrir l'UI
+openButton.MouseButton1Click:Connect(function()
+    uiVisible = true
+    frame.Visible = true
+    openButton.Visible = false
 end)
