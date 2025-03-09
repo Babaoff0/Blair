@@ -4,9 +4,9 @@ local gui = Instance.new("ScreenGui")
 gui.Parent = player:WaitForChild("PlayerGui")
 gui.ResetOnSpawn = false
 
--- S'assurer que l'UI reste toujours au premier plan
-gui.DisplayOrder = 999
-gui.IgnoreGuiInset = true -- Permet de ne pas être affecté par l'interface de Roblox
+gui.DisplayOrder = math.huge -- Définit un ordre d'affichage maximum pour être toujours en avant
+gui.IgnoreGuiInset = true -- Évite que l'UI soit affectée par les menus de Roblox
+gui.ZIndexBehavior = Enum.ZIndexBehavior.Global -- Force tous les éléments à être en haut
 
 local frame = Instance.new("Frame")
 frame.Parent = gui
@@ -15,7 +15,7 @@ frame.Position = UDim2.new(0.4, 0, 0.2, 0)
 frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 frame.Active = true
 frame.Draggable = true
-frame.ZIndex = 9999 -- Toujours au-dessus des autres interfaces
+frame.ZIndex = math.huge -- Toujours au-dessus de toutes les interfaces
 
 -- Titre
 local title = Instance.new("TextLabel")
@@ -26,7 +26,7 @@ title.Text = "Options"
 title.TextColor3 = Color3.fromRGB(255, 255, 255)
 title.Font = Enum.Font.SourceSansBold
 title.TextSize = 18
-title.ZIndex = 9999
+title.ZIndex = math.huge
 
 -- Boutons
 local function createButton(parent, text, position)
@@ -37,7 +37,7 @@ local function createButton(parent, text, position)
     button.Text = text
     button.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
     button.TextColor3 = Color3.fromRGB(255, 255, 255)
-    button.ZIndex = 9999
+    button.ZIndex = math.huge
     return button
 end
 
@@ -55,7 +55,7 @@ openButton.BackgroundColor3 = Color3.fromRGB(50, 150, 50)
 openButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 openButton.Visible = false
 openButton.Active = true
-openButton.ZIndex = 9999
+openButton.ZIndex = math.huge
 
 -- Variables d'état
 local speedEnabled = false
