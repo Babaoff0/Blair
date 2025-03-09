@@ -1,5 +1,6 @@
 -- Création de l'interface utilisateur
 local player = game.Players.LocalPlayer
+local userInputService = game:GetService("UserInputService")
 local gui = Instance.new("ScreenGui")
 gui.Parent = player:WaitForChild("PlayerGui")
 gui.ResetOnSpawn = false
@@ -95,12 +96,19 @@ lightingButton.MouseButton1Click:Connect(function()
     lightingEnabled = not lightingEnabled
 end)
 
+-- Fonction pour activer/désactiver le curseur
+local function setMouseVisibility(visible)
+    userInputService.MouseBehavior = visible and Enum.MouseBehavior.Default or Enum.MouseBehavior.LockCenter
+    userInputService.MouseIconEnabled = visible
+end
+
 -- Fonction Toggle UI
 toggleButton.MouseButton1Click:Connect(function()
     uiVisible = not uiVisible
     frame.Visible = uiVisible
     openButton.Visible = not uiVisible
     toggleButton.Text = uiVisible and "Cacher UI" or "Afficher UI"
+    setMouseVisibility(uiVisible)
 end)
 
 -- Fonction pour rouvrir l'UI
@@ -108,4 +116,5 @@ openButton.MouseButton1Click:Connect(function()
     uiVisible = true
     frame.Visible = true
     openButton.Visible = false
+    setMouseVisibility(true)
 end)
