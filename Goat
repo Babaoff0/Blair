@@ -53,11 +53,13 @@ toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 -- Bouton pour rouvrir l'UI
 openButton.Parent = gui
 openButton.Size = UDim2.new(0, 100, 0, 50)
-openButton.Position = UDim2.new(0.05, 0, 0.05, 0)
+openButton.Position = UDim2.new(0.02, 0, 0.85, 0)
 openButton.Text = "Ouvrir UI"
 openButton.BackgroundColor3 = Color3.fromRGB(50, 150, 50)
 openButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 openButton.Visible = false
+openButton.Active = true
+openButton.Draggable = false
 
 -- Variables d'état
 local speedEnabled = false
